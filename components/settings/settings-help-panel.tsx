@@ -1,0 +1,4 @@
+import { Info, ShieldCheck } from "lucide-react";
+import { helpCopy } from "./data";
+
+export function SettingsHelpPanel({ section, open, onClose }: { section: string; open: boolean; onClose: () => void }) { const copy = helpCopy[section] ?? helpCopy.general; return <aside className={`settings-help-panel ${open ? "settings-help-open" : ""}`}><div className="help-header"><div><span className="settings-eyebrow">Contextual help</span><h2>{copy.title}</h2></div><button onClick={onClose} aria-label="Close contextual help">×</button></div><div className="help-card"><Info size={16} /><p>{copy.description}</p></div><div className="help-security"><ShieldCheck size={16} /><p>{copy.note}</p></div><div className="help-status"><span>Current demo status</span><strong>Frontend only</strong><small>Real AI integration will be connected later.</small></div></aside>; }

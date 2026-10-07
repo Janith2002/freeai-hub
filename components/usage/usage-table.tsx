@@ -1,0 +1,4 @@
+import type { ModelUsageItem } from "./data";
+import { ModelStatus } from "@/components/models/model-status";
+
+export function UsageTable({ items }: { items: ModelUsageItem[] }) { return <div className="usage-model-table"><div className="usage-model-head"><span>Model</span><span>Provider</span><span>Requests</span><span>Tokens</span><span>Status</span></div>{items.map((item) => { const Icon = item.icon; return <div className="usage-model-row" key={item.name}><span className={`usage-table-icon usage-${item.tone}`}><Icon size={14} /><strong>{item.name}</strong></span><span>{item.provider}</span><span>{item.requests}</span><span>{item.tokens}</span><ModelStatus status={item.status} /></div>; })}</div>; }

@@ -1,0 +1,5 @@
+import { SettingsSection } from "./settings-section";
+import { SettingsSelect } from "./settings-select";
+import { SettingsToggle } from "./settings-toggle";
+
+export function ChatSettings() { return <SettingsSection title="Chat" description="Control how future conversations will behave."><div className="settings-fields"><SettingsToggle label="Enter to send" checked={true} onChange={() => undefined} /><SettingsToggle label="Show timestamps" checked={true} onChange={() => undefined} /><SettingsToggle label="Wrap code blocks" checked={true} onChange={() => undefined} /><SettingsToggle label="Auto-scroll conversations" checked={true} onChange={() => undefined} /><SettingsToggle label="Show model information" checked={true} onChange={() => undefined} /><SettingsSelect label="Conversation history" value="Keep until cleared" options={["Keep until cleared", "Session only", "Do not keep"]} onChange={() => undefined} /></div></SettingsSection>; }

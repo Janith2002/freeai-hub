@@ -1,0 +1,4 @@
+import { LockKeyhole } from "lucide-react";
+import { SettingsSection } from "./settings-section";
+
+export function PrivacySettings({ onClear }: { onClear: () => void }) { return <SettingsSection title="Privacy & Security" description="Understand how a production version will protect your data and provider secrets."><div className="privacy-info-grid"><div><strong>Session information</strong><span>Demo session only</span></div><div><strong>API key protection</strong><span>Server-side later</span></div><div><strong>Browser storage</strong><span>Not used</span></div><div><strong>Data transmission</strong><span>Demo only</span></div></div><div className="security-best-practice"><LockKeyhole size={17} /><p>Real API keys will be handled server-side later. Never expose provider secrets in client-side JavaScript.</p></div><div className="settings-actions"><button onClick={onClear}>Clear demo data</button></div></SettingsSection>; }

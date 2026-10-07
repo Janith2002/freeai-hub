@@ -1,0 +1,12 @@
+"use client";
+
+import { Check, Copy, RefreshCcw, Sparkles, X } from "lucide-react";
+import { useState } from "react";
+import { assistantActions, toneOptions } from "./data";
+import { WritingAction } from "./writing-action";
+
+export function WritingAssistant({ open, onClose }: { open: boolean; onClose: () => void }) {
+  const [tone, setTone] = useState("Professional");
+  const [activeAction, setActiveAction] = useState("");
+  return <aside className={`writing-assistant ${open ? "writing-assistant-open" : ""}`}><div className="writing-assistant-header"><div className="writing-assistant-heading"><span className="writing-assistant-mark"><Sparkles size={16} fill="currentColor" /></span><div><h2>AI Writing Assistant</h2><small><i />Ready to help</small></div></div><button className="writing-assistant-close" onClick={onClose} aria-label="Close writing assistant"><X size={17} /></button><button className="writing-assistant-more" aria-label="Assistant options">•••</button></div><div className="writing-assistant-scroll"><label className="writing-model-select"><span>Model</span><strong>Automatic (Best Available)</strong><select aria-label="Select writing model"><option>Automatic (Best Available)</option></select></label><div className="writing-quick-actions"><div className="writing-panel-label">Quick actions</div>{assistantActions.map((action) => <WritingAction key={action.label} label={action.label} icon={action.icon} active={activeAction === action.label} onClick={() => setActiveAction(action.label)} />)}</div><div className="tone-selector"><div className="writing-panel-label">Tone</div><div className="tone-options">{toneOptions.map((option) => <button key={option} className={tone === option ? "active" : ""} onClick={() => setTone(option)}>{option}</button>)}</div></div><div className="assistant-exchange"><div className="exchange-label">Your request</div><p>Make this paragraph more professional.</p><div className="exchange-label improved-label">AI suggestion <span>{tone} tone</span></div><div className="improved-card"><p>Here is a more polished version with a confident and professional tone. The message is clear, focused, and ready to share.</p><div className="improved-actions"><button><Check size={13} />Apply</button><button><Copy size={13} />Copy</button><button><RefreshCcw size={13} />Regenerate</button></div></div></div></div></aside>;
+}

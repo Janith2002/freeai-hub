@@ -1,0 +1,3 @@
+import { AlertTriangle, Bell, CircleAlert, PlugZap } from "lucide-react";
+
+export function UsageAlerts() { const alerts = [["Demo usage approaching limit", AlertTriangle], ["Provider not connected", PlugZap], ["Model unavailable", CircleAlert], ["Demo quota reset", Bell]] as const; return <section className="usage-alerts"><div className="usage-panel-heading"><h2>Usage Alerts</h2><span className="demo-chip">DEMO</span></div>{alerts.map(([title, Icon]) => <p key={title}><Icon size={13} /><span>{title}<small>Placeholder alert</small></span></p>)}</section>; }

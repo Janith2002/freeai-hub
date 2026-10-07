@@ -1,0 +1,1 @@
+export function SettingsSection({ title, description, children }: { title: string; description: string; children: React.ReactNode }) { return <section className="settings-section"><div className="settings-section-heading"><h2>{title}</h2><p>{description}</p></div><div className="settings-section-card">{children}</div></section>; }

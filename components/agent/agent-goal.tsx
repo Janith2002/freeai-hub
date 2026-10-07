@@ -1,0 +1,3 @@
+export function AgentGoal({ value, onChange }: { value: string; onChange: (value: string) => void }) {
+  return <section className="agent-goal-card"><div className="agent-builder-label"><span>01</span><div><strong>Agent goal</strong><small>Define the outcome this agent should work toward</small></div></div><textarea value={value} onChange={(event) => onChange(event.target.value)} placeholder="What should this agent accomplish?" aria-label="Agent goal" /></section>;
+}

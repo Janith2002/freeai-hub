@@ -1,0 +1,3 @@
+import { CheckCircle2, Pencil, Plus, ShieldOff } from "lucide-react";
+
+export function ApiKeyActivity() { const rows = [["Demo key added", Plus], ["Demo key edited", Pencil], ["Demo connection tested", CheckCircle2], ["Demo key disabled", ShieldOff]] as const; return <section className="api-activity"><div className="security-panel-title"><h3>Audit Activity</h3><span>Demo Activity</span></div>{rows.map(([title, Icon]) => <p key={title}><Icon size={13} /><span>{title}<small>Recently · DEMO</small></span></p>)}</section>; }

@@ -1,0 +1,3 @@
+import { Trash2, X } from "lucide-react";
+
+export function DeleteApiKeyModal({ record, onClose, onDelete }: { record: { label: string } | null; onClose: () => void; onDelete: () => void }) { if (!record) return null; return <div className="api-modal-backdrop"><section className="delete-modal" role="dialog" aria-modal="true"><span className="delete-icon"><Trash2 size={20} /></span><button className="delete-close" onClick={onClose} aria-label="Close delete modal"><X size={17} /></button><h2>Delete demo key?</h2><p>This only removes the local demo entry.</p><div><button onClick={onClose}>Cancel</button><button className="danger-button" onClick={onDelete}>Delete</button></div></section></div>; }

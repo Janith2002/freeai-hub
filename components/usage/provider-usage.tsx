@@ -1,0 +1,4 @@
+import { providerUsage } from "./data";
+import { ProviderUsageCard } from "./provider-usage-card";
+
+export function ProviderUsage() { return <section className="provider-usage"><div className="usage-panel-heading"><div><span className="usage-eyebrow">Sample provider data</span><h2>Provider Usage</h2></div><span className="demo-chip">DEMO VALUES</span></div><div className="provider-usage-table"><div className="provider-usage-head"><span>Provider</span><span>Requests</span><span>Tokens</span><span>Status</span></div>{providerUsage.map((item) => <ProviderUsageCard key={item.name} item={item} />)}</div></section>; }

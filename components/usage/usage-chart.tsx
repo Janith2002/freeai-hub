@@ -1,0 +1,7 @@
+"use client";
+
+import { useState } from "react";
+import { chartValues } from "./data";
+import { UsageChartTabs } from "./usage-chart-tabs";
+
+export function UsageChart() { const [tab, setTab] = useState("Requests"); const [period, setPeriod] = useState("24 Hours"); return <section className="usage-chart"><div className="usage-panel-heading"><div><span className="usage-eyebrow">Placeholder visualization</span><h2>Requests Over Time</h2></div><span className="demo-chip">DEMO</span></div><UsageChartTabs value={tab} onChange={setTab} period={period} onPeriod={setPeriod} /><div className="chart-area" role="img" aria-label={`${tab} demo chart for ${period}`}><div className="chart-y-labels"><span>100</span><span>75</span><span>50</span><span>25</span><span>0</span></div><div className="chart-lines"><i /><i /><i /><i /><div className="chart-bars">{chartValues.map((value, index) => <span key={index} style={{ height: `${Math.max(13, value * (tab === "Tokens" ? .82 : tab === "Generations" ? .65 : 1))}%` }} />)}</div></div></div><div className="chart-foot"><span>12 AM</span><span>6 AM</span><span>12 PM</span><span>6 PM</span><span>Now</span></div><p className="usage-chart-note">Sample visualization only. It does not represent real provider activity.</p></section>; }

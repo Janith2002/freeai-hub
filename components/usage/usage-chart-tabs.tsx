@@ -1,0 +1,3 @@
+export function UsageChartTabs({ value, onChange, period, onPeriod }: { value: string; onChange: (value: string) => void; period: string; onPeriod: (value: string) => void }) {
+  return <div className="usage-chart-controls"><div className="chart-tabs">{["Requests", "Tokens", "Generations"].map((tab) => <button key={tab} className={value === tab ? "active" : ""} onClick={() => onChange(tab)} aria-label={`Show ${tab}`}>{tab}</button>)}</div><div className="chart-period"><select value={period} onChange={(event) => onPeriod(event.target.value)} aria-label="Chart period"><option>24 Hours</option><option>7 Days</option><option>30 Days</option></select><span>{period}</span></div></div>;
+}

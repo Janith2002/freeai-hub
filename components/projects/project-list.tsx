@@ -1,0 +1,6 @@
+import { MoreHorizontal, Star } from "lucide-react";
+import type { Project } from "./data";
+
+export function ProjectList({ projects, selectedId, onSelect, onFavorite }: { projects: Project[]; selectedId: string | null; onSelect: (project: Project) => void; onFavorite: (project: Project) => void }) {
+  return <div className="projects-list-view">{projects.map((project) => { const Icon = project.icon; return <button key={project.id} className={`project-list-row ${selectedId === project.id ? "selected" : ""}`} onClick={() => onSelect(project)}><span className={`project-list-icon project-card-${project.tone}`}><Icon size={17} /></span><span><strong>{project.name}</strong><small>{project.description}</small></span><em>{project.type}</em><small>{project.updated}</small><small>{project.items} items</small><button onClick={(event) => { event.stopPropagation(); onFavorite(project); }} aria-label={`Favorite ${project.name}`}><Star size={15} fill={project.favorite ? "currentColor" : "none"} /></button><MoreHorizontal size={16} /></button>; })}</div>;
+}

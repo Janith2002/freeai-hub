@@ -1,0 +1,13 @@
+"use client";
+
+import { ArrowUp, Bot, Check, Lightbulb, Paperclip, Plus, Sparkles, Wrench } from "lucide-react";
+import { useState } from "react";
+
+interface CodingAssistantProps { open: boolean; onClose: () => void; }
+
+export function CodingAssistant({ open, onClose }: CodingAssistantProps) {
+  const [prompt, setPrompt] = useState("");
+  const [sent, setSent] = useState<string[]>([]);
+  const submit = () => { if (!prompt.trim()) return; setSent((current) => [...current, prompt.trim()]); setPrompt(""); };
+  return <aside className={`coding-assistant ${open ? "coding-assistant-open" : ""}`}><div className="assistant-header"><div className="assistant-title"><span className="assistant-mark"><Sparkles size={16} fill="currentColor" /></span><div><h2>AI Coding Assistant</h2><span><i />Ready to help</span></div></div><button className="assistant-close" onClick={onClose} aria-label="Close coding assistant">×</button><button className="assistant-menu" aria-label="Assistant options">•••</button></div><div className="assistant-thread"><div className="assistant-welcome"><span className="assistant-large-icon"><Bot size={22} /></span><h3>Build something great</h3><p>Ask me to explain code, find bugs, or help you build your next feature.</p></div><div className="assistant-card"><div className="assistant-card-heading"><Lightbulb size={15} /><strong>Suggested actions</strong></div><button>Explain this file <ArrowUp size={14} /></button><button>Find potential bugs <ArrowUp size={14} /></button><button>Write tests for this component <ArrowUp size={14} /></button></div>{sent.map((message, index) => <div className="assistant-sent" key={`${message}-${index}`}><span><Check size={12} /></span>{message}</div>)}</div><div className="assistant-composer"><textarea value={prompt} onChange={(event) => setPrompt(event.target.value)} onKeyDown={(event) => { if (event.key === "Enter" && !event.shiftKey) { event.preventDefault(); submit(); } }} placeholder="Ask about your code..." aria-label="Ask about your code" /><div className="assistant-compose-actions"><button aria-label="Add context"><Plus size={16} /></button><button><Paperclip size={14} />Attach</button><button><Wrench size={14} />Tools</button><button className="assistant-send" onClick={submit} aria-label="Send coding prompt"><ArrowUp size={16} /></button></div></div><p className="assistant-disclaimer">AI responses are placeholder UI for now.</p></aside>;
+}

@@ -1,0 +1,4 @@
+import type { ApiKeyRecord } from "./data";
+import { ApiKeyCard } from "./api-key-card";
+
+export function ApiKeyList({ records, selectedId, onSelect, onFavorite, onEdit, onTest, onDisable, onDelete }: { records: ApiKeyRecord[]; selectedId: string | null; onSelect: (record: ApiKeyRecord) => void; onFavorite: (record: ApiKeyRecord) => void; onEdit: (record: ApiKeyRecord) => void; onTest: (record: ApiKeyRecord) => void; onDisable: (record: ApiKeyRecord) => void; onDelete: (record: ApiKeyRecord) => void }) { return <div className="api-key-grid">{records.map((record) => <ApiKeyCard key={record.id} record={record} selected={selectedId === record.id} onSelect={() => onSelect(record)} onFavorite={() => onFavorite(record)} onEdit={() => onEdit(record)} onTest={() => onTest(record)} onDisable={() => onDisable(record)} onDelete={() => onDelete(record)} />)}</div>; }

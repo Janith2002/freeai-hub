@@ -1,0 +1,8 @@
+"use client";
+
+import { CheckCircle2, Code2, FileImage, MessageCircle, PanelRightClose, Wrench } from "lucide-react";
+import { currentModel, usagePlaceholder } from "./data";
+
+export function ModelInfoPanel({ open, onClose }: { open: boolean; onClose: () => void }) {
+  return <aside className={`model-info-panel ${open ? "model-info-open" : ""}`}><div className="model-info-header"><div><span className="eyebrow">Current Model</span><h2>{currentModel.name}</h2></div><button onClick={onClose} aria-label="Close model information"><PanelRightClose size={18} /></button></div><div className="provider-line"><span className="provider-logo">G</span><span><strong>{currentModel.provider}</strong><small>Free tier model</small></span><span className="status-pill"><CheckCircle2 size={13} />Available</span></div><p className="model-description">{currentModel.description}</p><h3>Capabilities</h3><div className="capability-list"><span><MessageCircle size={15} />Chat</span><span><Code2 size={15} />Coding</span><span><FileImage size={15} />Vision</span><span><Wrench size={15} />Tools</span></div><div className="info-divider" /><div className="usage-heading"><h3>Usage</h3><span>Placeholder</span></div><div className="usage-meter"><div><strong>{usagePlaceholder.used}</strong><span>of {usagePlaceholder.limit}</span></div><div className="usage-progress"><span style={{ width: `${usagePlaceholder.percent}%` }} /></div><small>Visual placeholder only. Real usage tracking is not connected.</small></div><button className="model-details-button">View model details</button></aside>;
+}

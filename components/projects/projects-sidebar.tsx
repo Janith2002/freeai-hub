@@ -1,0 +1,12 @@
+"use client";
+
+import { Archive, FilePlus2, FolderHeart, LayoutGrid, Search, Star, Users, X } from "lucide-react";
+import { useState } from "react";
+import { categoryItems, projects } from "./data";
+import { ProjectNavSection } from "./project-nav-section";
+
+export function ProjectsSidebar({ activeNav, open, onClose, onNavigate, onNew }: { activeNav: string; open: boolean; onClose: () => void; onNavigate: (value: string) => void; onNew: () => void }) {
+  const [query, setQuery] = useState("");
+  const nav = [{ label: "All Projects", icon: LayoutGrid, count: projects.length }, { label: "Recent", icon: Search, count: 5 }, { label: "Favorites", icon: Star, count: projects.filter((project) => project.favorite).length }, { label: "Shared", icon: Users, count: 2 }, { label: "Archived", icon: Archive, count: projects.filter((project) => project.status === "Archived").length }];
+  return <><button className={`projects-drawer-backdrop ${open ? "visible" : ""}`} onClick={onClose} aria-label="Close project navigation" /><aside className={`projects-sidebar ${open ? "projects-sidebar-open" : ""}`}><div className="projects-sidebar-header"><div><span className="projects-eyebrow">Workspace</span><h1>My Projects</h1></div><button className="projects-close" onClick={onClose} aria-label="Close project navigation"><X size={17} /></button></div><button className="new-project-sidebar-button" onClick={onNew}><FilePlus2 size={16} />New Project</button><label className="projects-search"><Search size={15} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search projects..." aria-label="Search projects" /></label><nav className="project-nav-list">{nav.map((item) => <ProjectNavSection key={item.label} {...item} active={activeNav === item.label} onClick={() => { onNavigate(item.label); onClose(); }} />)}</nav><div className="projects-divider" /><div className="projects-category-heading"><span>Categories</span><FolderHeart size={14} /></div><nav className="project-nav-list categories-list">{categoryItems.map(({ type, icon }) => <ProjectNavSection key={type} label={type} icon={icon} count={projects.filter((project) => project.type === type).length} active={activeNav === type} onClick={() => { onNavigate(type); onClose(); }} />)}</nav><div className="projects-sidebar-footer"><span className="projects-footer-dot" />Local demo library</div></aside></>;
+}

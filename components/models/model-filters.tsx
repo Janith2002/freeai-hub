@@ -1,0 +1,5 @@
+import { Filter } from "lucide-react";
+
+export function ModelFilters({ capability, status, onCapability, onStatus }: { capability: string; status: string; onCapability: (value: string) => void; onStatus: (value: string) => void }) {
+  return <div className="model-filters"><label><Filter size={14} /><select value={capability} onChange={(event) => onCapability(event.target.value)} aria-label="Filter by capability"><option>Capability</option><option>Chat</option><option>Coding</option><option>Vision</option><option>Files</option><option>Tools</option></select><span>{capability}</span></label><label><select value={status} onChange={(event) => onStatus(event.target.value)} aria-label="Filter by status"><option>Status</option><option>Demo</option><option>Available</option><option>Not Connected</option><option>Coming Soon</option></select><span>{status}</span></label></div>;
+}

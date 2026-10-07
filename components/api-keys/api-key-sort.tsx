@@ -1,0 +1,3 @@
+import { ArrowDownAZ, ChevronDown } from "lucide-react";
+
+export function ApiKeySort({ value, onChange }: { value: string; onChange: (value: string) => void }) { return <label className="api-key-sort"><ArrowDownAZ size={14} /><select value={value} onChange={(event) => onChange(event.target.value)} aria-label="Sort API keys"><option>Provider</option><option>Name</option><option>Created</option><option>Last Used</option></select><span>{value}</span><ChevronDown size={13} /></label>; }

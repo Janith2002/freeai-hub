@@ -1,0 +1,10 @@
+"use client";
+
+import { useState } from "react";
+import { WritingToolbar } from "./writing-toolbar";
+
+export function DocumentEditor({ title, onSave }: { title: string; onSave: () => void }) {
+  const [saved, setSaved] = useState(true);
+  const save = () => { setSaved(true); onSave(); };
+  return <section className="document-editor"><WritingToolbar title={title} onSave={save} /><div className="document-editor-scroll"><article className="paper-document" contentEditable suppressContentEditableWarning onInput={() => setSaved(false)}><p className="document-kicker">APPLICATION · 2026</p><h1>Professional Cover Letter</h1><p className="document-date">September 28, 2026</p><p>Dear Hiring Manager,</p><p>I am writing to express my interest in the <mark>Product Designer</mark> position at your company. With a strong background in user-centered design and a passion for creating thoughtful digital experiences, I am excited about the opportunity to contribute to your team.</p><p>In my current role, I collaborate closely with engineering and product teams to turn complex problems into simple, intuitive solutions. I recently led the redesign of a core workflow that improved task completion by <strong>32%</strong> and gave our customers a more confident way to work.</p><blockquote>“Great design is not just what it looks like. Great design is how it works.”</blockquote><h2>Why I am a strong fit</h2><ul><li>Five years of experience designing digital products.</li><li>A clear, collaborative approach to solving problems.</li><li>Curiosity and care in every detail of the user experience.</li></ul><p>I would welcome the chance to bring this experience to your team and learn more about the challenges you are solving. Thank you for your time and consideration.</p><p>Sincerely,<br /><strong>Janith Akalanka</strong></p></article></div><div className="document-statusbar"><span>{saved ? "Saved" : "Unsaved changes"}</span><span>Words: 248</span><span>Characters: 1,842</span><span>Reading time: 2 min</span></div></section>;
+}

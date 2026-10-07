@@ -1,0 +1,4 @@
+import { Database, FileText } from "lucide-react";
+import { SettingsSection } from "./settings-section";
+
+export function DataSettings({ onClear }: { onClear: () => void }) { return <SettingsSection title="Data & Storage" description="Review the demo data categories used throughout this frontend prototype."><div className="data-status-grid">{[["Conversation data", "Demo session only", Database], ["Projects data", "Placeholder only", FileText], ["Uploaded files", "Not stored", FileText], ["Usage data", "Sample values only", Database]].map(([label, status, Icon]) => <div key={String(label)}><Icon size={15} /><span><strong>{String(label)}</strong><small>{String(status)}</small></span></div>)}</div><div className="settings-actions"><button>Export demo settings</button><button onClick={onClear}>Clear demo data</button></div></SettingsSection>; }

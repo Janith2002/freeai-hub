@@ -1,0 +1,3 @@
+import { projectContent } from "./data";
+
+export function ProjectContent() { return <section className="project-content"><div className="project-panel-title"><h3>Project content</h3><span>6 demo items</span></div><div className="project-content-list">{projectContent.map((item) => { const Icon = item.icon; return <button key={item.title}><span><Icon size={14} /></span><strong>{item.title}<small>{item.type} · {item.time}</small></strong></button>; })}</div></section>; }

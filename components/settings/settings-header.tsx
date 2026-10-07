@@ -1,0 +1,1 @@
+export function SettingsHeader({ title, description }: { title: string; description: string }) { return <div className="active-settings-header"><span className="settings-eyebrow">Settings workspace</span><h1>{title}</h1><p>{description}</p></div>; }

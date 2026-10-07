@@ -1,0 +1,5 @@
+import { Paperclip, X } from "lucide-react";
+
+export function AgentTaskInput({ value, onChange, context, onContextChange }: { value: string; onChange: (value: string) => void; context: string; onContextChange: (value: string) => void }) {
+  return <section className="agent-task-card"><div className="agent-builder-label"><span>02</span><div><strong>Task input</strong><small>Give the agent a specific task to complete</small></div></div><textarea value={value} onChange={(event) => onChange(event.target.value)} placeholder="Describe the task for your agent..." aria-label="Agent task" /><div className="agent-task-footer"><button><Paperclip size={14} />Attach context</button><button onClick={() => onChange("")} aria-label="Clear task"><X size={14} />Clear</button></div><label className="optional-context"><span>Optional context</span><input value={context} onChange={(event) => onContextChange(event.target.value)} placeholder="Add helpful context or constraints..." aria-label="Optional context" /></label></section>;
+}

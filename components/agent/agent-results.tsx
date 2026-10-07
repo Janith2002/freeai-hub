@@ -1,0 +1,13 @@
+"use client";
+
+import { AlertTriangle, Check, Copy, Download, RefreshCcw, Save } from "lucide-react";
+import { useState } from "react";
+import { AgentResultSection } from "./agent-result-section";
+
+export function AgentResults({ agentName }: { agentName: string }) {
+  const [open, setOpen] = useState<Record<string, boolean>>({ "Final Answer": true, Sources: true, "Actions Taken": false, "Execution Summary": false });
+  const [copied, setCopied] = useState(false);
+  const toggle = (name: string) => setOpen((current) => ({ ...current, [name]: !current[name] }));
+  const copy = async () => { await navigator.clipboard?.writeText("Placeholder agent result for " + agentName); setCopied(true); window.setTimeout(() => setCopied(false), 1500); };
+  return <section className="agent-results"><div className="agent-placeholder-banner"><AlertTriangle size={14} /><strong>PLACEHOLDER RESULT</strong><span>Demo agent execution only — no real AI agent is connected.</span></div><div className="agent-result-heading"><div><span className="agent-eyebrow">Demo execution · {agentName}</span><h2>Agent result</h2></div><div className="agent-result-actions"><button onClick={copy}>{copied ? <Check size={14} /> : <Copy size={14} />}{copied ? "Copied" : "Copy"}</button><button><Save size={14} />Save</button><button><Download size={14} />Export</button><button><RefreshCcw size={14} />Run Again</button></div></div><AgentResultSection title="Final Answer" open={open["Final Answer"]} onToggle={() => toggle("Final Answer")}><p>The fictional agent completed a structured review of the task. It organized the main ideas, highlighted the most relevant considerations, and prepared a concise response for the user.</p></AgentResultSection><AgentResultSection title="Sources" open={open.Sources} onToggle={() => toggle("Sources")}><ul><li>Placeholder source one · example.demo</li><li>Placeholder source two · demo.local</li><li>All sources are fictional UI data.</li></ul></AgentResultSection><AgentResultSection title="Actions Taken" open={open["Actions Taken"]} onToggle={() => toggle("Actions Taken")}><ul><li>Interpreted the goal and selected workflow steps.</li><li>Reviewed the enabled demo tools.</li><li>Prepared a structured placeholder result.</li></ul></AgentResultSection><AgentResultSection title="Execution Summary" open={open["Execution Summary"]} onToggle={() => toggle("Execution Summary")}><p>This local demo used no APIs, tools, browser automation, shell commands, or external jobs. The displayed result is not based on a real execution.</p></AgentResultSection></section>;
+}

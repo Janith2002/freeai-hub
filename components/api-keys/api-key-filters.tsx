@@ -1,0 +1,3 @@
+import { Filter } from "lucide-react";
+
+export function ApiKeyFilters({ value, onChange }: { value: string; onChange: (value: string) => void }) { return <label className="api-key-filter"><Filter size={14} /><select value={value} onChange={(event) => onChange(event.target.value)} aria-label="Filter API keys"><option>All</option><option>Active</option><option>Inactive</option></select><span>{value}</span></label>; }

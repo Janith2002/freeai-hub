@@ -1,0 +1,6 @@
+"use client";
+
+import { CheckCircle2, LoaderCircle, X } from "lucide-react";
+import { useEffect, useState } from "react";
+
+export function TestConnectionModal({ name, onClose }: { name: string | null; onClose: () => void }) { const [testing, setTesting] = useState(true); useEffect(() => { if (!name) return; const timer = window.setTimeout(() => setTesting(false), 800); return () => window.clearTimeout(timer); }, [name]); if (!name) return null; return <div className="api-modal-backdrop"><section className="test-modal" role="dialog" aria-modal="true"><button onClick={onClose} aria-label="Close connection test"><X size={17} /></button>{testing ? <><LoaderCircle className="api-spinner" size={31} /><h2>Testing...</h2><p>Running a local demo connection check.</p></> : <><CheckCircle2 className="test-success" size={34} /><span className="demo-result">DEMO RESULT</span><h2>Demo connection successful</h2><p>No real provider request was made.</p><button className="api-primary-button" onClick={onClose}>Done</button></>}</section></div>; }

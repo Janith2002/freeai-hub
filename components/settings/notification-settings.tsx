@@ -1,0 +1,4 @@
+import { SettingsSection } from "./settings-section";
+import { SettingsToggle } from "./settings-toggle";
+
+export function NotificationSettings() { return <SettingsSection title="Notifications" description="Choose future notification preferences. These demo controls do not send notifications."><div className="settings-fields"><SettingsToggle label="Desktop notifications" checked={false} onChange={() => undefined} /><SettingsToggle label="Task completion notifications" checked={true} onChange={() => undefined} /><SettingsToggle label="Agent completion notifications" checked={true} onChange={() => undefined} /><SettingsToggle label="Usage warning notifications" checked={true} onChange={() => undefined} /><SettingsToggle label="Security alerts" checked={true} onChange={() => undefined} /></div><p className="settings-demo-note">Notifications are not active in this frontend demo.</p></SettingsSection>; }

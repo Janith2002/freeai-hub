@@ -1,0 +1,8 @@
+import { Check, Star } from "lucide-react";
+import type { Model } from "./data";
+import { ModelCapabilities } from "./model-capabilities";
+import { ModelStatus } from "./model-status";
+
+export function ModelList({ models, selectedId, compared, onSelect, onCompare, onFavorite }: { models: Model[]; selectedId: string | null; compared: string[]; onSelect: (model: Model) => void; onCompare: (model: Model) => void; onFavorite: (model: Model) => void }) {
+  return <div className="model-list-view">{models.map((model) => { const Icon = model.icon; return <div className={`model-list-row ${selectedId === model.id ? "selected" : ""}`} key={model.id}><button className={`compare-checkbox ${compared.includes(model.id) ? "checked" : ""}`} onClick={() => onCompare(model)} aria-label={`Compare ${model.name}`}>{compared.includes(model.id) && <Check size={11} />}</button><span className={`model-list-icon model-${model.tone}`}><Icon size={17} /></span><button className="model-list-name" onClick={() => onSelect(model)}><strong>{model.name}</strong><small>{model.provider}</small></button><ModelCapabilities capabilities={model.capabilities.slice(0, 3)} /><ModelStatus status={model.status} /><button onClick={() => onFavorite(model)} aria-label={`Favorite ${model.name}`}><Star size={14} fill={model.favorite ? "currentColor" : "none"} /></button><button className="model-list-select" onClick={() => onSelect(model)}>Select</button></div>; })}</div>;
+}

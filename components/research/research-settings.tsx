@@ -1,0 +1,5 @@
+import { Check, ChevronDown, Globe2, Languages, Newspaper, SlidersHorizontal } from "lucide-react";
+
+export function ResearchSettings() {
+  return <section className="research-settings"><div className="settings-title"><SlidersHorizontal size={15} /><h3>Research settings</h3></div><div className="setting-row"><span>Research depth</span><label><select defaultValue="Standard" aria-label="Settings research depth"><option>Quick</option><option>Standard</option><option>Deep</option></select>Standard<ChevronDown size={13} /></label></div><div className="setting-row"><span>Sources</span><div className="setting-source-chips"><span><Globe2 size={12} />Web</span><span><Languages size={12} />Academic</span><span><Newspaper size={12} />News</span></div></div><div className="setting-row"><span>Language</span><b>English</b></div><div className="setting-row"><span>Model</span><b>Automatic (Best Available)</b></div><div className="setting-row"><span>Include citations</span><span className="setting-toggle"><Check size={11} /></span></div></section>;
+}

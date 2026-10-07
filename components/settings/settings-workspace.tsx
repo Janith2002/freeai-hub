@@ -1,0 +1,20 @@
+"use client";
+
+import "./settings.css";
+import { Menu, PanelRight, Settings as SettingsIcon } from "lucide-react";
+import { useState } from "react";
+import { AboutSettings } from "./about-settings";
+import { AiPreferences } from "./ai-preferences";
+import { AppearanceSettings } from "./appearance-settings";
+import { ChatSettings } from "./chat-settings";
+import { DataSettings } from "./data-settings";
+import { GeneralSettings } from "./general-settings";
+import { KeyboardShortcuts } from "./keyboard-shortcuts";
+import { NotificationSettings } from "./notification-settings";
+import { PrivacySettings } from "./privacy-settings";
+import { RestoreDefaultsModal } from "./restore-defaults-modal";
+import { SettingsHeader } from "./settings-header";
+import { SettingsHelpPanel } from "./settings-help-panel";
+import { SettingsSidebar } from "./settings-sidebar";
+
+export function SettingsWorkspace() { const [section, setSection] = useState("general"); const [sidebarOpen, setSidebarOpen] = useState(false); const [helpOpen, setHelpOpen] = useState(false); const [resetOpen, setResetOpen] = useState(false); const [density, setDensity] = useState("Comfortable"); const [landing, setLanding] = useState("Dashboard"); const [theme, setTheme] = useState("System"); const [reduce, setReduce] = useState(false); const [fallback, setFallback] = useState(true); const component = section === "general" ? <GeneralSettings density={density} setDensity={setDensity} landing={landing} setLanding={setLanding} /> : section === "appearance" ? <AppearanceSettings theme={theme} setTheme={setTheme} reduce={reduce} setReduce={setReduce} /> : section === "ai" ? <AiPreferences fallback={fallback} setFallback={setFallback} /> : section === "chat" ? <ChatSettings /> : section === "notifications" ? <NotificationSettings /> : section === "privacy" ? <PrivacySettings onClear={() => setResetOpen(true)} /> : section === "data" ? <DataSettings onClear={() => setResetOpen(true)} /> : section === "shortcuts" ? <KeyboardShortcuts /> : <AboutSettings />; return <div className="settings-page"><header className="settings-topbar"><button className="settings-mobile-menu" onClick={() => setSidebarOpen(true)} aria-label="Open settings navigation"><Menu size={19} /></button><div className="settings-brand"><span><SettingsIcon size={17} /></span><b>FreeAI</b> Settings <em>Demo</em></div><div className="settings-breadcrumb"><span>Settings</span><span>/</span><strong>{section}</strong></div><div className="settings-top-actions"><button className="settings-help-button" onClick={() => setHelpOpen(true)}><PanelRight size={15} />Help</button></div></header><div className="settings-body"><SettingsSidebar active={section} open={sidebarOpen} onClose={() => setSidebarOpen(false)} onSelect={setSection} /><main className="settings-main"><div className="settings-demo-banner"><strong>DEMO SETTINGS</strong><span>Changes are temporary React state only and are not persisted.</span></div><SettingsHeader title={section === "general" ? "General" : section === "ai" ? "AI Preferences" : section === "data" ? "Data & Storage" : section === "privacy" ? "Privacy & Security" : section === "shortcuts" ? "Keyboard Shortcuts" : section.charAt(0).toUpperCase() + section.slice(1)} description="Configure your FreeAI Hub experience." />{component}<div className="settings-bottom-actions"><button onClick={() => setResetOpen(true)}>Restore defaults</button><button className="settings-save">Save demo settings</button></div></main><SettingsHelpPanel section={section} open={helpOpen} onClose={() => setHelpOpen(false)} /><button className="settings-mobile-help" onClick={() => setHelpOpen(true)} aria-label="Open contextual help"><PanelRight size={17} /></button></div><RestoreDefaultsModal open={resetOpen} onClose={() => setResetOpen(false)} onConfirm={() => { setDensity("Comfortable"); setLanding("Dashboard"); setTheme("System"); setReduce(false); setFallback(true); setResetOpen(false); }} /></div>; }

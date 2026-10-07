@@ -1,0 +1,7 @@
+"use client";
+
+import { X } from "lucide-react";
+import { useEffect, useState } from "react";
+import type { ApiKeyRecord } from "./data";
+
+export function EditApiKeyModal({ record, onClose, onSave }: { record: ApiKeyRecord | null; onClose: () => void; onSave: (record: ApiKeyRecord) => void }) { const [label, setLabel] = useState(record?.label ?? ""); const [notes, setNotes] = useState(record?.notes ?? ""); useEffect(() => { const close = (event: KeyboardEvent) => { if (event.key === "Escape") onClose(); }; if (record) document.addEventListener("keydown", close); return () => document.removeEventListener("keydown", close); }, [record, onClose]); if (!record) return null; return <div className="api-modal-backdrop"><section className="api-modal" role="dialog" aria-modal="true"><div className="api-modal-header"><div><span className="api-keys-eyebrow">Local demo</span><h2>Edit API Key</h2></div><button onClick={onClose} aria-label="Close edit modal"><X size={18} /></button></div><div className="api-security-warning">The demo key value is never shown or stored.</div><label>Provider<input value={record.provider} disabled /></label><label>Label<input value={label} onChange={(event) => setLabel(event.target.value)} /></label><label>Notes<textarea value={notes} onChange={(event) => setNotes(event.target.value)} /></label><div className="api-modal-actions"><button onClick={onClose}>Cancel</button><button className="api-primary-button" onClick={() => { onSave({ ...record, label, notes }); onClose(); }}>Save Changes</button></div></section></div>; }

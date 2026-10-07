@@ -1,0 +1,9 @@
+import { Archive, CalendarDays, FolderOpen, Pencil, Star, X } from "lucide-react";
+import type { Project } from "./data";
+import { ProjectActivity } from "./project-activity";
+import { ProjectContent } from "./project-content";
+
+export function ProjectDetails({ project, open, onClose, onFavorite, onArchive, onRename }: { project: Project | null; open: boolean; onClose: () => void; onFavorite: () => void; onArchive: () => void; onRename: () => void }) {
+  const ProjectIcon = project?.icon;
+  return <aside className={`project-details ${open ? "project-details-open" : ""}`}><div className="project-details-header"><div><span className="projects-eyebrow">Workspace panel</span><h2>Project Details</h2></div><button onClick={onClose} aria-label="Close project details"><X size={17} /></button></div>{project && ProjectIcon ? <><div className="details-hero"><span className={`details-icon project-card-${project.tone}`}><ProjectIcon size={21} /></span><h3>{project.name}</h3><span>{project.type}</span><p>{project.description}</p></div><div className="details-stats"><span><CalendarDays size={13} />Created<strong>{project.created}</strong></span><span><CalendarDays size={13} />Updated<strong>{project.updated}</strong></span><span><FolderOpen size={13} />Items<strong>{project.items}</strong></span></div><div className="details-actions"><button><FolderOpen size={14} />Open Project</button><button onClick={onRename}><Pencil size={14} />Rename</button><button onClick={onFavorite}><Star size={14} />Favorite</button><button onClick={onArchive}><Archive size={14} />Archive</button></div><ProjectContent /><ProjectActivity /></> : <div className="project-details-empty"><span><FolderOpen size={23} /></span><h3>Select a project to view details.</h3><p>Choose a project card to see its content and activity.</p></div>}</aside>;
+}

@@ -1,0 +1,8 @@
+import { AlignLeft, Bold, ChevronDown, Code2, Italic, Link2, List, ListOrdered, MoreHorizontal, Redo2, Save, Underline, Undo2 } from "lucide-react";
+
+export function WritingToolbar({ title, onSave }: { title: string; onSave: () => void }) {
+  return <div className="writing-toolbar"><div className="writing-title-wrap"><FileTextMark /><strong>{title}</strong><span className="writing-saved-dot" /></div><div className="writing-format-tools"><button onClick={onSave} aria-label="Save document"><Save size={15} /></button><span className="toolbar-divider" /><button aria-label="Undo"><Undo2 size={15} /></button><button aria-label="Redo"><Redo2 size={15} /></button><span className="toolbar-divider" /><button aria-label="Bold"><Bold size={15} /></button><button aria-label="Italic"><Italic size={15} /></button><button aria-label="Underline"><Underline size={15} /></button><button className="heading-button">Heading <ChevronDown size={13} /></button><button aria-label="Bullet list"><List size={16} /></button><button aria-label="Numbered list"><ListOrdered size={16} /></button><button aria-label="Align text"><AlignLeft size={16} /></button><button aria-label="Add link"><Link2 size={15} /></button><button aria-label="Insert"><Code2 size={15} /></button><button aria-label="More formatting"><MoreHorizontal size={16} /></button></div></div>;
+}
+
+function FileTextMark() { return <span className="writing-file-mark"><FileTextIcon /></span>; }
+function FileTextIcon() { return <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><path d="M14 2v6h6M8 13h8M8 17h6" /></svg>; }

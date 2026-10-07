@@ -1,0 +1,3 @@
+import { activity } from "./data";
+
+export function UsageActivity() { return <section className="usage-activity"><div className="usage-panel-heading"><h2>Recent Activity</h2><span className="demo-chip">DEMO</span></div><div>{activity.map(([title, detail, Icon]) => <p key={title}><span><Icon size={13} /></span><strong>{title}<small>{detail}</small></strong></p>)}</div><em>No real activity is being tracked.</em></section>; }
